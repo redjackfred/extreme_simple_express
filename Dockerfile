@@ -1,19 +1,20 @@
-FROM node:18-apline AS builder
-
-WORKDIR /usr/src/app
-
-COPY package*.json ./
-
-RUN npm install
-
+# Use an official Node.js runtime as a parent image
 FROM node:18-alpine
 
-WORKDIR /usr/src/app
+# Set the working directory in the container
+WORKDIR /app
 
-COPY --from=builder /usr/src/app/node_modules ./node_modules
+# Copy package.json and package-lock.json to the working directory
+COPY package*.json ./
 
-COPY app.js .
+# Install application dependencies
+RUN npm install
 
+# Copy the rest of your app's source code
+COPY . .
+
+# Expose the port the app runs on
 EXPOSE 3000
 
+# Define the command to run the app
 CMD [ "node", "app.js" ]
