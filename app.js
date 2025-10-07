@@ -4,7 +4,7 @@ const PORT = process.env.PORT || 3000;
 
 app.get('/', (req, res) => {
   const hostname = require('os').hostname();
-  res.send(`Hello from ${hostname}, this is Pei-Wen from USF!\n`);
+  res.send(`<h1>Hello from ${hostname}, this is a simple express application!\n`);
 });
 
 app.listen(PORT, () => {
